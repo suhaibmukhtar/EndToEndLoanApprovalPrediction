@@ -132,6 +132,7 @@ celerybeat.pid
 
 # Environments
 .env
+.loanenv
 .venv
 env/
 venv/
