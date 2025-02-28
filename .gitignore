@@ -7,6 +7,7 @@ __pycache__/
 *.so
 
 loanenv/
+\loanenv
 
 # Distribution / packaging
 .Python
