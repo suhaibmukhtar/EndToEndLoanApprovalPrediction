@@ -38,13 +38,6 @@ EndToEndLoanApprovalPrediction/
 - **Reusability**: Components can be reused across different projects or pipelines.
 - **Scalability**: The structure supports easy addition of new features and components.
 - **Maintainability**: Clear separation of concerns makes it easier to maintain and update the codebase.
-- **Testing**: Dedicated tests for each component ensure robustness and reliability.
-
-### Component Details
-
-#### 1. Data Ingestion (`src/components/data_ingestion.py`)
-- Handles data loading from various sources
-- Performs initial data validation
 - Splits data into training and testing sets
 - Saves the processed datasets in the artifacts directory
 
@@ -86,11 +79,6 @@ EndToEndLoanApprovalPrediction/
 - Configuration reading and parsing
 - Custom exception handling
 - Logging setup
-
-### Configuration Script (`src/config.py`)
-- Reads and parses the `config.yaml` file
-- Provides easy access to configuration parameters
-- Ensures consistency and centralization of configuration management
 
 ### Testing Framework
 
