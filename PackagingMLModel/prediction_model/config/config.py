@@ -24,3 +24,12 @@ LOG_FILE_PATH = os.path.join(LOG_DIR, LOG_FILE_NAME)
 
 TEST_SIZE = 0.2
     
+#CUSTOM COLUMN
+CUSTOM_COLUMN_NAME = 'total_assets_value'
+COLUMNS_TO_MERGE = ['residential_assets_value', 'commercial_assets_value', 'luxury_assets_value', 'bank_asset_value']
+
+CATEGORICAL_FEATURES_TO_ENCODE = ['education', 'self_employed']
+LOG_TRANSFORMATION = ['income_annum', 'loan_amount', 'cibil_score', CUSTOM_COLUMN_NAME]
+
+COLUMNS_TO_DROP = ['loan_id','residential_assets_value', 'commercial_assets_value', 'luxury_assets_value', 'bank_asset_value']
+
