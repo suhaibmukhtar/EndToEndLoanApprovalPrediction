@@ -53,9 +53,9 @@ def save_pipeline(pipeline_to_save):
         raise CustomException(e,sys)
     
 #loading the model from the disk
-def load_pipeline():
+def load_pipeline(saved_pipeline_name: str):
     try:
-        model_path = os.path.join(PACKAGE_ROOT,config.SAVE_MODEL_PATH,config.MODEL_NAME)
+        model_path = os.path.join(PACKAGE_ROOT,config.SAVE_MODEL_PATH,saved_pipeline_name)
         loaded_model = joblib.load(model_path)
         return loaded_model
     except Exception as e:

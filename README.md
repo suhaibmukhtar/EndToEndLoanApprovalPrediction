@@ -5,31 +5,40 @@ This project develops an end-to-end machine learning pipeline to predict loan ap
 
 ### Directory Structure
 ```
-EndToEndLoanApprovalPrediction/
-├── src/
-│   ├── __init__.py
-│   ├── components/
+PackagingMLModel/
+├── prediction_model/
+│   ├── config/
 │   │   ├── __init__.py
-│   │   ├── data_ingestion.py
-│   │   ├── data_transformation.py
-│   │   └── model_trainer.py
-│   ├── pipeline/
+│   │   └── config.py
+│   ├── datasets/
 │   │   ├── __init__.py
-│   │   ├── training_pipeline.py
-│   │   └── prediction_pipeline.py
-│   └── utils.py
-├── config/
-│   └── config.yaml
-├── artifacts/
-├── notebooks/
-│   └── EDA.ipynb
+│   │   ├── loan_approval_dataset.csv
+│   │   ├── train.csv
+│   │   └── test.csv
+│   ├── processing/
+│   │   ├── __init__.py
+│   │   ├── data_handling.py
+│   │   └── data_preprocessing.py
+│   ├── trained_models/
+│   │   ├── __init__.py
+│   │   └──loan_approval_model.pkl
+│   ├── pipeline.py
+│   ├── prediction_pipeline.py
+│   └── training_pipeline.py
 ├── tests/
 │   ├── __init__.py
-│   ├── test_data_ingestion.py
-│   ├── test_data_transformation.py
-│   └── test_model_trainer.py
-├── setup.py
+│   ├── test_prediction.py
+│   └── pytest.ini
+│
+├── __init__.py
+├── exception.py
+├── logger.py
+├── MANIFEST.in
 ├── requirements.txt
+├── setup.py
+├── utils.py
+├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
