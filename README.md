@@ -50,13 +50,13 @@ PackagingMLModel/
 - Splits data into training and testing sets
 - Saves the processed datasets in the artifacts directory
 
-#### 2. Data Transformation (`src/components/data_transformation.py`)
+#### 2. Data Transformation (`prediction_model/processing/data_preprocessing.py`)
 - Implements feature engineering steps
 - Handles missing value imputation
 - Performs feature scaling and encoding
 - Creates and saves the preprocessing pipeline
 
-#### 3. Model Trainer (`src/components/model_trainer.py`)
+#### 3. Model Trainer (`prediction_model/training_pipeline.py`)
 - Trains the machine learning model
 - Performs hyperparameter tuning
 - Evaluates model performance
@@ -64,26 +64,26 @@ PackagingMLModel/
 
 ### Pipeline Implementation
 
-#### Training Pipeline (`src/pipeline/training_pipeline.py`)
+#### Training Pipeline (`prediction_model/training_pipeline.py`)
 - Orchestrates the entire training process
 - Manages the flow between different components
 - Handles logging and exception management
 - Tracks experiments using MLflow
 
-#### Prediction Pipeline (`src/pipeline/prediction_pipeline.py`)
+#### Prediction Pipeline (`prediction_model/prediction_pipeline.py`)
 - Loads the trained model
 - Processes new data using saved preprocessing pipeline
 - Generates predictions for new loan applications
 
 ### Configuration and Utilities
 
-#### Config File (`config/config.yaml`)
+#### Config File (`prediction_model/config/config.py`)
 - Contains all configurable parameters
 - Defines paths for data and model artifacts
 - Specifies model training parameters
 - Sets MLflow tracking URI
 
-#### Utils (`src/utils.py`)
+#### Utils (`utils.py`)
 - Common utility functions
 - Configuration reading and parsing
 - Custom exception handling
