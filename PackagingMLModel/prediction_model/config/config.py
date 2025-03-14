@@ -33,3 +33,5 @@ LOG_TRANSFORMATION = ['income_annum', 'loan_amount', 'cibil_score', CUSTOM_COLUM
 
 COLUMNS_TO_DROP = ['loan_id','residential_assets_value', 'commercial_assets_value', 'luxury_assets_value', 'bank_asset_value']
 
+TRAIN_CONFUSION_MATRIX_PATH = os.path.join("PackagingMLModel",SUB_PACKAGE, 'trained_models', 'confusion_matrix_Train.png')
+TEST_CONFUSION_MATRIX_PATH = os.path.join("PackagingMLModel",SUB_PACKAGE, 'trained_models', 'confusion_matrix_Test.png')
