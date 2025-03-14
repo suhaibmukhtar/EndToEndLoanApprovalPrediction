@@ -4,7 +4,6 @@ import sys
 from pathlib import Path
 import pandas as pd
 
-import mlflow
 from logger import logging
 from exception import CustomException
 PACKAGE_ROOT = Path(os.path.abspath(os.path.dirname(__file__))).parent
@@ -12,7 +11,7 @@ sys.path.append(str(PACKAGE_ROOT))
 
 from prediction_model.config import config
 from prediction_model.processing.data_handling import load_dataset, separate_data,load_pipeline, data_split_strategy
-from prediction_model.processing.data_preprocessing import CreateCustomColumns, ColumnsToDrop, EncodingTarget
+from prediction_model.processing.data_preprocessing import CreateCustomColumns, ColumnsToDrop, EncodingTargetVariable
 from prediction_model.prediction_pipeline import generate_predictions
 
 
@@ -81,3 +80,55 @@ def test_CreateCustomColumns():
         pytest.fail("FileNotFoundError: Data file not found")
     except Exception as e:  
         pytest.fail(f"Unexpected error: {e}")
+        
+def test_ColumnsToDrop():
+    try:
+        df = load_dataset(config.DATA_FILE_NAME)
+        X, y = separate_data(df)
+        X = CreateCustomColumns(X)
+        X = ColumnsToDrop(X)
+        # Ensure the columns are dropped correctly
+        assert not any(col in X.columns for col in config.COLUMNS_TO_DROP), "Custom column(s) not dropped"
+        assert len(X.columns) == (len(df.columns) - len(config.COLUMNS_TO_DROP)), "Columns not dropped correctly" #bcz label col is droped from X
+    except CustomException:
+        pytest.fail("CustomException raised: Columns drop failed")
+    except FileNotFoundError:  
+        pytest.fail("FileNotFoundError: Data file not found")
+    except Exception as e:  
+        pytest.fail(f"Unexpected error: {e}")
+        
+def test_EncodingTargetVariable():
+    try:
+        df = load_dataset(config.DATA_FILE_NAME)
+        y = df[config.TARGET]
+        y = EncodingTargetVariable(y)
+        # Ensure the target variable is encoded correctly
+        assert y[0] in [0, 1], "Target variable not encoded correctly"
+        assert len(y.unique()) == 2, "Target variable not encoded correctly"
+
+    except CustomException:
+        pytest.fail("CustomException raised: Target encoding failed")
+    except FileNotFoundError:
+        pytest.fail("FileNotFoundError: Data file not found")
+    except Exception as e:
+        pytest.fail(f"Unexpected error: {e}")
+
+#the pytest executes this fixture before below two tests, below test will use the output of this fixture for testing
+@pytest.fixture
+def single_prediction():
+    try:
+        test_data = load_dataset(config.TEST_FILE_NAME)
+        X, y = separate_data(test_data)
+        classification_pipeline = load_pipeline(config.MODEL_NAME)
+        y_pred = classification_pipeline.predict(X)
+        return y_pred[0]
+    except FileNotFoundError:
+        pytest.fail("FileNotFoundError: Data file not found")
+    except Exception as e:
+        pytest.fail(f"Unexpected error: {e}")
+        
+def test_generate_prediction_not_none(single_prediction):
+    assert single_prediction is not None, "Prediction failed as it is None"
+
+def test_check_dtype_of_prediction(single_prediction):
+    assert single_prediction in [0, 1], "Prediction failed as it is not of type Integer"
