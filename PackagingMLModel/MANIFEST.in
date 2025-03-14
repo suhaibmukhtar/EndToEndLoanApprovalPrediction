@@ -6,6 +6,7 @@ recursive-include ./prediction_model/*
 include ./prediction_model/datasets/*.csv
 include ./prediction_model/trained_models/*.pkl
 include ./tests/*
+inclde ./prediction_model/VERSION
 exclude PackagingMLModel/mlartifacts
 recursive-exclude *__pycache__
 recursive-exclude * *.py[co]

@@ -1,7 +1,8 @@
 import os
 from datetime import datetime
+from pathlib import Path
 
-SUB_PACKAGE = "prediction_model"
+SUB_PACKAGE = Path(os.path.abspath(os.path.dirname(__file__))).parent
 DATASET_DIR = os.path.join(SUB_PACKAGE,"datasets")
 DATA_FILE_NAME = "loan_approval_dataset.csv"
 TRAIN_FILE_NAME = "train.csv"
