@@ -24,7 +24,8 @@ PackagingMLModel/
 │   │   └──loan_approval_model.pkl
 │   ├── pipeline.py
 │   ├── prediction_pipeline.py
-│   └── training_pipeline.py
+│   ├── training_pipeline.py
+│   ├── VERSION
 ├── tests/
 │   ├── __init__.py
 │   ├── test_prediction.py
@@ -162,3 +163,58 @@ This guide explains how to push your ML application as a package to **Test PyPI*
 - Once the upload is successful, you will receive a link that contains the location where your package is now hosted on Test PyPI.
 
 By following these steps, you will be able to successfully push your ML application as a package to Test PyPI.
+
+## Including Files in the Source Distribution
+
+To ensure that all necessary files are included in the source distribution of the package, we use a `MANIFEST.in` file. This file specifies which files should be included or excluded when creating the source distribution.
+
+### Example `MANIFEST.in` File
+
+The `MANIFEST.in` file can include directives such as `include`, `exclude`, `recursive-include`, and `recursive-exclude` followed by patterns to specify the files.
+
+For example, to include `requirements.txt` and `README.md`, you can add the following lines to `MANIFEST.in`:
+
+```
+include requirements.txt
+include README.md
+```
+
+This ensures that these files are part of the source distribution of the package.
+
+### Why We Require `MANIFEST.in`
+
+The `MANIFEST.in` file is essential for the following reasons:
+- **Completeness**: Ensures that all necessary files are included in the source distribution.
+- **Reproducibility**: Allows others to reproduce the environment and run the code without missing dependencies or configuration files.
+- **Documentation**: Includes important documentation files like `README.md`, `LICENSE`, to include even all python files in the distribution.
+
+By properly configuring the `MANIFEST.in` file, you can ensure that your package is complete and ready for distribution.
+
+## Versioning
+
+To display the version of our package, we use a `VERSION` file inside the `prediction_model` folder. This file specifies the version value of the package.
+
+### Example `VERSION` File
+
+The `VERSION` file contains the version value:
+
+```
+1.0.0
+```
+
+### Displaying the Version
+
+To display the version of the package, we read the version value from the `VERSION` file inside the `__init__.py` file of the `prediction_model` folder. This allows anyone to check the version of the package using the command line.
+
+```python
+import os
+
+# ...existing code...
+
+# Read the version from the VERSION file
+version_file_path = os.path.join(os.path.dirname(__file__), 'VERSION')
+with open(version_file_path) as version_file:
+    __version__ = version_file.read().strip()
+```
+
+By including the `VERSION` file and updating the `__init__.py` file, we ensure that the version of the package is easily accessible and can be checked by anyone using the package.

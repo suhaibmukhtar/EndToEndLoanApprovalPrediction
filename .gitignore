@@ -140,7 +140,11 @@ ENV/
 env.bak/
 venv.bak/
 Logs/
+/PackagingMLModel/mlruns/
 
+/mlruns
+./PackagingMLModel/mlartifacts
+mlartifacts/
 # Spyder project settings
 .spyderproject
 .spyproject

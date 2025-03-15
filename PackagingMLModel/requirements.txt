@@ -7,4 +7,5 @@ joblib
 flask
 mlflow
 pytest
+imbalanced-learn
 -e .
